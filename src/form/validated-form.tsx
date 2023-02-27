@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import * as React from 'react';
 import { ReactElement, useEffect, useState } from 'react';
 import {
@@ -14,6 +12,7 @@ import {
   ValidationMode,
 } from 'react-hook-form';
 import { Button, Col, CustomInput, Form, FormFeedback, FormGroup, Input, InputProps, Label, Row } from 'reactstrap';
+import { InputType } from 'reactstrap/es/Input';
 
 import { byteSize, isEmpty, openFile, setFileData } from '../util';
 
@@ -87,6 +86,18 @@ ValidatedForm.displayName = 'ValidatedForm';
 export interface ValidatedInputProps extends InputProps {
   // name of the component, also used for validation
   name: string;
+  // id
+  id?: string;
+  // children
+  tag?: React.ElementType;
+  // children
+  children?: any;
+  // className
+  className?: string;
+  // onChange
+  onChange?: any;
+  // onBlur
+  onBlur?: any;
   // register function from react-hook-form
   register?: UseFormRegister<FieldValues>;
   // error object from react-hook-form for the field, errors[fieldsName]
@@ -106,6 +117,12 @@ export interface ValidatedInputProps extends InputProps {
 export interface ValidatedFieldProps extends ValidatedInputProps {
   // label for the field
   label?: string;
+  // disabled
+  disabled?: boolean;
+  // tag
+  tag?: React.ElementType;
+  // hidden
+  hidden?: boolean;
   // className for label
   labelClass?: string;
   // hide the label
@@ -234,6 +251,8 @@ export function ValidatedField({
 ValidatedField.displayName = 'ValidatedField';
 
 interface ValidatedBlobFieldProps extends ValidatedFieldProps {
+  // type
+  type?: InputType;
   // set value function from react-hook-forms
   setValue?: UseFormSetValue<{
     [x: string]: any;
@@ -424,7 +443,8 @@ export function ValidatedBlobField({
 
 ValidatedBlobField.displayName = 'ValidatedBlobField';
 
-const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+const EMAIL_REGEXP =
+  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
 
 export function isEmail(value) {
   if (isEmpty(value)) return true;
