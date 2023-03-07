@@ -47,7 +47,7 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",
-    "sanitize-html": "^2.3.1",
+    "sanitize-html": "^2.9.0",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
